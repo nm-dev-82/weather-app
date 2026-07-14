@@ -99,6 +99,11 @@ function App() {
           className="search__box"
           value={city}
           onChange={(e) => setCity(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSearch();
+            }
+          }}
           placeholder="都市名を入力 (例: Kobe)"
         />
         <button className="search__button" onClick={handleSearch}>検索</button>
@@ -108,7 +113,9 @@ function App() {
 
     {weather && (
       <section className="currentWeather">
-        <p className="currentWeather__city">{weather.name}</p>
+        <p className="currentWeather__city">
+          {isLocationBased ? "現在地" : weather.name}
+        </p>
         <div className="currentWeather__main">
           <img
             src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
