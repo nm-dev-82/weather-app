@@ -11,6 +11,7 @@ function App() {
   const [displayCity,setDisplayCity]=useState("Tokyo");//天気予報の初期表示
 
   const [errorMsg, setErrorMsg] = useState(""); //エラーメッセージ
+  const [isLocationBased, setIsLocationBased] = useState(false);//現在地の表示
 
   const handleSearch =()=>{
     setDisplayCity(city); //検索ボタンの処理・入力値を天気予報に反映
@@ -40,6 +41,8 @@ function App() {
   const getWeather=async()=>{
   try{
     setErrorMsg(""); //エラーメッセージをリセット
+    setIsLocationBased(false); 
+
     const url=`https://api.openweathermap.org/data/2.5/weather?q=${displayCity}&appid=${apiKey}&units=metric&lang=ja`;
     const response= await fetch(url);
 
@@ -72,6 +75,8 @@ function App() {
     const data=await response.json();
     console.log(data);
     setWeather(data);
+    setIsLocationBased(true);   // 現在地だと記録
+
     }catch(error){
       setErrorMsg("通信に失敗しました。時間をおいて試してください。");  //エラー処理・通信失敗
     }
