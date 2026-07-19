@@ -17,6 +17,18 @@ function App() {
     setDisplayCity(city); //検索ボタンの処理・入力値を天気予報に反映
   }
 
+  const getWeatherLabel = (id) => {//説明文の表示
+    if (id >= 200 && id < 300) return "雷雨";
+    if (id >= 300 && id < 400) return "小雨";
+    if (id >= 500 && id < 600) return "雨";
+    if (id >= 600 && id < 700) return "雪";
+    if (id >= 700 && id < 800) return "霧";
+    if (id === 800) return "晴れ";
+    if (id === 801 || id === 802) return "晴れ時々くもり";
+    if (id === 803 || id === 804) return "くもり";
+    return "不明";
+　};
+
   //現在地を取得
   const handleLocation =()=>{
     navigator.geolocation.getCurrentPosition((position)=>{
@@ -121,6 +133,7 @@ function App() {
             src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
             alt={weather.weather[0].description}
           />
+          <p className="currentWeather__desc">{getWeatherLabel(weather.weather[0].id)}</p>
           <p className="currentWeather__temp">
           <span className="currentWeather__temp--max">{Math.round(weather.main.temp_max)}℃</span>
           {" / "}

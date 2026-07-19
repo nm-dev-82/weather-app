@@ -1,18 +1,33 @@
-# React + Vite
+・概要
+React + OpenWeatherMap API を使い天気情報を取得するWebページです。
+都市名検索・現在地取得により、現在の天気を確認できます。
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+公開URL: https://weather-app-nm-dev2.vercel.app/
 
-Currently, two official plugins are available:
+・制作目的
+React/Vite環境構築・状態管理（useState/useEffect）・API通信・非同期処理・制御コンポーネントなど
+フロントエンド開発の基礎を、実際に手を動かして身につけることを目的に制作しました。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+・主な機能
+現在の天気表示：都市名・気温（最高/最低）・湿度・風速・体感温度を表示
+都市名検索：英語入力で任意の都市の天気を取得（検索ボタン/Enterキー）
+現在地取得：ブラウザの位置情報を使い、現在地の天気を自動取得
+エラー処理：存在しない都市名の入力、位置情報の拒否、通信失敗に対応したメッセージを表示
+APIキーは .env.local に分離し、.gitignore で除外することでリポジトリに含めていません。
 
-## React Compiler
+・使用技術
+言語：JavaScript (ES6+)
+フレームワーク：React（Vite）
+API：OpenWeatherMap API
+スタイリング：CSS
+ホスティング：Vercel
+バージョン管理：Git/GitHub
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
 
-Note: This will impact Vite dev & build performances.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+・今後の改善点、追加実装予定
+TypeScript化
+コンポーネント分割
+ダークモード対応
+週間予報（7日間・タブ切り替え）
+検索履歴機能
